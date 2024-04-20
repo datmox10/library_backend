@@ -7,4 +7,6 @@ public interface Common {
     String INACTIVE = "INACTIVE";
     String HEADER_AUTHORIZATION = "Authorization";
     String LOCK = " ACCOUNT_LOCK";
+    String BORROW = "BORROW";
+    String OVER_DUE = "OVER_DUE";
 }

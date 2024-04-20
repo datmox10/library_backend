@@ -33,6 +33,9 @@ public class BooksEntity {
     @Column(name = "PUBLISHER")
     private String publisher;
     @Basic
+    @Column(name = "IMAGE")
+    private String image;
+    @Basic
     @Column(name = "CREATED_DATE")
     private LocalDateTime createdDate;
     @Basic
@@ -118,7 +121,13 @@ public class BooksEntity {
     public void setUpdatedDate(LocalDateTime updatedDate) {
         this.updatedDate = updatedDate;
     }
+    public String getImage() {
+        return image;
+    }
 
+    public void setImage(String image) {
+        this.image = image;
+    }
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
