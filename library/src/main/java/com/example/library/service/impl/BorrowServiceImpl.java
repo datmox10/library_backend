@@ -41,7 +41,7 @@ public class BorrowServiceImpl implements BorrowService {
                 .id(UUID.randomUUID().toString())
                 .bookId(request.getBookId())
                 .borrowDate(now)
-                .returnDate(now.plusDays(14))
+                .dueDate(now.plusDays(14))
                 .status(Common.BORROW)
                 .quantity(request.getQuantity())
                 .userId(user.getId())

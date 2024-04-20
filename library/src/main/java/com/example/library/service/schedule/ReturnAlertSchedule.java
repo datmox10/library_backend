@@ -26,7 +26,7 @@ public class ReturnAlertSchedule {
         this.userRepository = userRepository;
     }
 
-    @Scheduled(cron = "0 0 8 * * ?")
+    @Scheduled(cron = "0 0/5 * * * ?")
     public void sendDailyEmails() {
         LocalDate today = LocalDate.now();
         LocalDate tomorrow = today.plusDays(1);
