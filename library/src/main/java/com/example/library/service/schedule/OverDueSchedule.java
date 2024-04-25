@@ -1,16 +1,12 @@
 package com.example.library.service.schedule;
 
 import com.example.library.entity.BorrowReturnEntity;
-import com.example.library.entity.UserEntity;
 import com.example.library.repository.BorrowReturnRepository;
-import com.example.library.repository.UserRepository;
-import com.example.library.service.AsyncMailSender;
 import com.example.library.util.Common;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Component;
 
-import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.temporal.ChronoUnit;
 import java.util.List;
