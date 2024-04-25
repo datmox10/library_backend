@@ -5,6 +5,7 @@ import com.example.library.entity.UserEntity;
 import com.example.library.repository.BorrowReturnRepository;
 import com.example.library.repository.UserRepository;
 import com.example.library.service.AsyncMailSender;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Component;
@@ -14,6 +15,7 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 @Component
+@Slf4j
 public class ReturnAlertSchedule {
     private final AsyncMailSender asyncMailSender;
     private final BorrowReturnRepository borrowReturnRepository;
@@ -28,6 +30,7 @@ public class ReturnAlertSchedule {
 
     @Scheduled(cron = "0 0/5 * * * ?")
     public void sendDailyEmails() {
+        log.info("sendDailyEmails start");
         LocalDate today = LocalDate.now();
         LocalDate tomorrow = today.plusDays(1);
         List<String> dueDateUserList = borrowReturnRepository.findByOrderByDueDateDesc().stream()
