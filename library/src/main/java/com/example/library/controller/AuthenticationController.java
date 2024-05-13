@@ -5,6 +5,7 @@ import com.example.library.entity.UserEntity;
 import com.example.library.model.ErrorResponse;
 import com.example.library.model.requestbody.JwtLoginRequestBody;
 import com.example.library.model.responsebody.JwtLoginResponseBody;
+import com.example.library.model.responsebody.UserInfoResponse;
 import com.example.library.repository.UserRepository;
 import com.example.library.service.impl.JwtUserDetailsService;
 import com.example.library.util.Common;
@@ -18,6 +19,8 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.BadCredentialsException;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.web.bind.annotation.*;
 
@@ -97,5 +100,13 @@ public class AuthenticationController {
 
         // Kiểm tra xem khoảng thời gian có nhỏ 30 phút hay không
         return differenceInMinutes < 30;
+    }
+    @GetMapping("/user")
+    public UserInfoResponse getUser(){
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        String userName = authentication.getName();
+        UserEntity user = userRepository.findAllByUserName(userName);
+        return UserInfoResponse.builder().id(user.getId())
+                .fullName(user.getFullName()).phoneNumber(user.getPhoneNumber()).email(user.getEmail()).userName(userName).build();
     }
 }
