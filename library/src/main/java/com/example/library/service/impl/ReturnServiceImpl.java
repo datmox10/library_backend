@@ -28,7 +28,7 @@ public class ReturnServiceImpl implements ReturnService {
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
         String userName = authentication.getName();
         UserEntity user = userRepository.findAllByUserName(userName);
-        BorrowReturnEntity returnEntity = borrowReturnRepository.findAllByBookId(request.getBookId());
+        BorrowReturnEntity returnEntity = borrowReturnRepository.findAllById(request.getReturnId());
         if (!user.getId().equals(returnEntity.getUserId())) {
             throw new KMAException(ErrorCode.USER_NOT_EXITS, "USER_NOT_MATCH");
         }
